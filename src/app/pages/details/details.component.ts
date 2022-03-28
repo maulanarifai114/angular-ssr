@@ -8,21 +8,19 @@ import { SeoService } from 'src/app/services/seo.service';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  data$: any = null;
-
   constructor(private seo: SeoService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     const slug = this.activatedRoute.snapshot.paramMap.get('slug');
     console.log('slug >>>', slug);
-
-    this.data$ = this.seo.generateTags({
+    this.seo.generateTags({
       title:
         slug
           ?.split('-')
           .map((a) => a[0].toUpperCase() + a.slice(1).toLowerCase())
           .join(' ') || 'Angular Default Title',
       description: 'Angular SEO Service',
+      slug,
     });
   }
 }

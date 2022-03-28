@@ -8,6 +8,18 @@ import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
+const MockBrowser = require('mock-browser').mocks.MockBrowser;
+const mock = new MockBrowser();
+global['document'] = mock.getDocument();
+global['window'] = mock.getWindow();
+global['location'] = mock.getLocation();
+global['navigator'] = mock.getNavigator();
+global['history'] = mock.getHistory();
+global['localStorage'] = mock.getLocalStorage();
+global['sessionStorage'] = mock.getSessionStorage();
+global.WebSocket = require('ws');
+global.XMLHttpRequest = require('xhr2');
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();

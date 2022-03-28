@@ -1,0 +1,7 @@
+<p>home works!</p>
+<a routerLink="/about">About</a>
+<a routerLink="/detail/slug">Details</a>
+
+<button (click)="compressFile()">Upload and compress Image</button>
+<img [src]="imgResultBeforeCompression" *ngIf="imgResultBeforeCompression" />
+<img [src]="imgResultAfterCompression" *ngIf="imgResultAfterCompression" />
